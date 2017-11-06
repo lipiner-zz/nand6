@@ -1,5 +1,5 @@
-from FirstParse import FirstParse
-from SecondParse import SecondParse
+from first_parse import FirstParse
+from second_parse import SecondParse
 
 if __name__ == '__main__':
     parser = FirstParse("(LOOP)")
