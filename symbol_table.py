@@ -5,7 +5,7 @@ FIRST_REGISTER_ALLOCATED = 16
 
 class SymbolTable:
     """
-
+    A class for the symbol table for a single assembler code
     """
     def __init__(self):
         """
