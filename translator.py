@@ -1,4 +1,4 @@
-from SymbolTable import SymbolTable
+from symbol_table import SymbolTable
 
 #############
 # constants #
