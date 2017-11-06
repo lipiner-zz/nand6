@@ -34,6 +34,11 @@ def assemble_file(file_name):
 
 
 def assemble_directory(directory_name):
+    """
+
+    :param directory_name:
+    :return:
+    """
     files_list = os.listdir(directory_name)  # list of all the files' name in the subject directory
     for directory_file in files_list:
         if ASM_SUFFIX in directory_file:
