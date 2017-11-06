@@ -1,5 +1,6 @@
 from first_parse import FirstParse
 from second_parse import SecondParse
+from symbol_table import SymbolTable
 
 if __name__ == '__main__':
     parser = FirstParse("(LOOP)")
@@ -23,3 +24,7 @@ if __name__ == '__main__':
     parser = SecondParse("0;JEQ")
     print(parser.get_dest(), parser.get_comp(), parser.get_jump())
 
+    print(SymbolTable.find("SCREEN"))
+    SymbolTable.set_label(parser)
+    print(SymbolTable.find("LOOP"))
+    print(SymbolTable.find("k"))
