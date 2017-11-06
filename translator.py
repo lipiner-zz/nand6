@@ -29,7 +29,7 @@ class Translator:
 
     @staticmethod
     def translate(parser):
-        instruction_type = parser.get_type
+        instruction_type = parser.get_type()
         if instruction_type == A_INSTRUCTION_CODE:
             return Translator.__translate_A(parser)
         elif instruction_type == C_INSTRUCTION_CODE:
@@ -39,7 +39,7 @@ class Translator:
 
     @staticmethod
     def __translate_A(parser):
-        address = parser.get_address
+        address = parser.get_address()
         # checks if the address is actually a variable or label and replaces it with its address from the SymbolTable
         if address.isalpha():
             address = SymbolTable.find(address)
@@ -57,9 +57,9 @@ class Translator:
     @staticmethod
     def __translate_C(parser):
         # getting the instruction parts
-        jump = parser.get_jump
-        dest = parser.get_dest
-        comp = parser.get_comp
+        jump = parser.get_jump()
+        dest = parser.get_dest()
+        comp = parser.get_comp()
 
         # converting the instructions to binary codes
         jump_binary = Translator.__translate_jump(jump)
