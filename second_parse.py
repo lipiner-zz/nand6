@@ -23,7 +23,7 @@ class SecondParse (Parser):
 
     def __parse(self):
         if self.get_type() == A_COMMAND_TYPE:
-            pass
+            self.__address = self.command[1:]
         elif self.get_type() == C_COMMAND_TYPE:
             command_parts = self.command.split(D_INST_FIRST_DELIMITERS)  # split the dest and the comp
             if len(command_parts) < 2:  # if dest doesn't exist
