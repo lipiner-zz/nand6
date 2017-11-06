@@ -21,13 +21,16 @@ def assemble_file(file_name):
         output_file_name = file_name.replace(ASM_SUFFIX, HACK_SUFFIX)
         with open(output_file_name, WRITING_MODE) as output_file:
             # first parse of the file
+            first_parser = FirstParse()
             for line in input_file:
-                first_parser = FirstParse(line)
+                first_parser.set_command(line)
                 SymbolTable.set_label(first_parser)
             # second parse of the file
             input_file.seek(0)
+            second_parser = SecondParse()
             for line in input_file:
-                second_parser = SecondParse(line)
+                second_parser.set_command(line)
+                second_parser.parse()
                 binary_line = Translator.translate(second_parser)
                 if binary_line:
                     output_file.write(binary_line + LINE_BREAK)
