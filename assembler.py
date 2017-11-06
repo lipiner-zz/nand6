@@ -17,6 +17,11 @@ LINE_BREAK = "\n"
 
 
 def assemble_file(file_name):
+    """
+
+    :param file_name:
+    :return:
+    """
     with open(file_name) as input_file:
         output_file_name = file_name.replace(ASM_SUFFIX, HACK_SUFFIX)
         with open(output_file_name, WRITING_MODE) as output_file:

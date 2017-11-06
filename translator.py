@@ -26,12 +26,21 @@ SHIFT_RIGHT = ">>"
 
 
 class Translator:
+    """
+
+    """
 
     @staticmethod
-    def translate(parser):
+    def translate(parser, symbol_table):
+        """
+
+        :param parser:
+        :param symbol_table:
+        :return:
+        """
         instruction_type = parser.get_type()
         if instruction_type == A_INSTRUCTION_CODE:
-            return Translator.__translate_A(parser)
+            return Translator.__translate_A(parser, symbol_table)
         elif instruction_type == C_INSTRUCTION_CODE:
             return Translator.__translate_C(parser)
         else:
@@ -39,6 +48,12 @@ class Translator:
 
     @staticmethod
     def __translate_A(parser, symbol_table):
+        """
+
+        :param parser:
+        :param symbol_table:
+        :return:
+        """
         address = parser.get_address()
         # checks if the address is actually a variable or label and replaces it with its address from the SymbolTable
         if not address.isdigit():
@@ -56,6 +71,11 @@ class Translator:
 
     @staticmethod
     def __translate_C(parser):
+        """
+
+        :param parser:
+        :return:
+        """
         # getting the instruction parts
         jump = parser.get_jump()
         dest = parser.get_dest()
@@ -71,10 +91,20 @@ class Translator:
 
     @staticmethod
     def __translate_jump(jump):
+        """
+
+        :param jump:
+        :return:
+        """
         return JUMP_TRANSLATOR[jump]
 
     @staticmethod
     def __translate_comp(comp):
+        """
+
+        :param comp:
+        :return:
+        """
         a = BINARY_ZERO
         # for M comp instructions: setting a to 1 and replacing M with A for figuring the comp instruction
         if M_REGISTER in comp:
@@ -87,6 +117,11 @@ class Translator:
 
     @staticmethod
     def __translate_dest(dest):
+        """
+
+        :param dest:
+        :return:
+        """
         d1 = d2 = d3 = BINARY_ZERO
         if A_REGISTER in dest:
             d1 = BINARY_ONE
@@ -99,6 +134,11 @@ class Translator:
 
     @staticmethod
     def __translate_shift(comp):
+        """
+
+        :param comp:
+        :return:
+        """
         if SHIFT_LEFT in comp or SHIFT_RIGHT in comp:
             return BINARY_ZERO
 
