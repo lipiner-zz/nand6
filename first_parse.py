@@ -7,7 +7,7 @@ class FirstParse (Parser):
     A Parser object to parse the command to its parts in the first parse phase.
     """
 
-    def __init__(self, command):
+    def __init__(self):
         """
         Creates a new FirstParse object.
         """
