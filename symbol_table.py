@@ -15,9 +15,9 @@ class SymbolTable:
         Sets a new label in the dictionary if there was a label command.
         :param parser: a FirstParser object contains the label
         """
-        name = parser.get_label_name
+        name = parser.get_label_name()
         if name is not None:
-            SymbolTable.__add_new_label(name, parser.get_line_number)
+            SymbolTable.__add_new_label(name, parser.get_line_number())
 
     @staticmethod
     def find(name):

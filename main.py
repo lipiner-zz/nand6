@@ -16,6 +16,7 @@ if __name__ == '__main__':
     print(parser.get_label_name())
     print(parser.get_line_number())
     print(FirstParse.get_line_number())
+    SymbolTable.set_label(parser)
 
     parser = SecondParse("D = A")
     print(parser.get_dest(), parser.get_comp(), parser.get_jump())
@@ -25,6 +26,6 @@ if __name__ == '__main__':
     print(parser.get_dest(), parser.get_comp(), parser.get_jump())
 
     print(SymbolTable.find("SCREEN"))
-    SymbolTable.set_label(parser)
+
     print(SymbolTable.find("LOOP"))
     print(SymbolTable.find("k"))
