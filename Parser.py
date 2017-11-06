@@ -1,3 +1,5 @@
+import re
+
 C_COMMAND_TYPE = 'C'
 A_COMMAND_TYPE = 'A'
 EMPTY_COMMAND_TYPE = 'N'
@@ -32,8 +34,9 @@ class Parser:
         comment_pos = self.command.find(COMMENT_SYMBOL)  # search for a comments chars "//"
         if comment_pos >= 0:
             self.command = self.command[:comment_pos]  # removes any comment if there is any
-        for note in WHITE_SPACES_CHARS_LIST:
-            self.command = self.command.replace(note, "")  # removes any white spaces
+        self.command = re.sub("\s", "", self.command)  # removes any white spaces
+        # for note in WHITE_SPACES_CHARS_LIST:
+        #     self.command = self.command.replace(note, "")  # removes any white spaces
 
     def __set_type(self):
         """
@@ -53,4 +56,3 @@ class Parser:
         :return: the command type: A for A-instruction, C for C-instruction, N for empty line, and L for label
         """
         return self.__command_type
-

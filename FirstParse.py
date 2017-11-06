@@ -22,10 +22,10 @@ class FirstParse (Parser):
         :return: the label name if the command is a label
         """
         command_type = self.get_type()
+        if command_type == LABEL_COMMAND_TYPE:
+            return self.command[1:-1]  # ignores the () at the beginning and the end
         if command_type != EMPTY_COMMAND_TYPE:
             FirstParse.__line_number += 1
-            if command_type == LABEL_COMMAND_TYPE:
-                return self.command[1:-1]  # ignores the () at the beginning and the end
 
     @staticmethod
     def get_line_number():
