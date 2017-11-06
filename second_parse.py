@@ -9,19 +9,17 @@ class SecondParse (Parser):
     """
     A Parser object to parse the command to its parts in the second parse phase.
     """
-    def __init__(self, command):
+    def __init__(self):
         """
-        Initializes the Parser object with the command.
-        :param command: the command to parse
+        Creates a new SecondParse object.
         """
-        Parser.__init__(self, command)
+        Parser.__init__(self)
         self.__address = None
         self.__dest = None
         self.__comp = None
         self.__jump = None
-        self.__parse()
 
-    def __parse(self):
+    def parse(self):
         """
         Parse the command into its parts and set the address / dest / comp / jump
         """

@@ -15,11 +15,18 @@ class Parser:
     """
     A Parser object to parse the command to its parts.
     """
-    def __init__(self, command):
+    def __init__(self):
         """
-        Creates new object with the given command. Clears the command from comments and extra white spaces and
+        Creates new object of a parser.
+        """
+        self.command = None
+        self.__command_type = None
+
+    def set_command(self, command):
+        """
+        Sets the command in the parser. Clears the command from comments and extra white spaces and
         set the type
-        :param command: the command to parse
+        :param command: the command to parse.
         """
         self.command = command
         self.__clear()

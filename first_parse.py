@@ -6,14 +6,13 @@ class FirstParse (Parser):
     """
     A Parser object to parse the command to its parts in the first parse phase.
     """
-    __line_number = 0  # initialize the line number to 0
 
     def __init__(self, command):
         """
-        Initializes the Parser object with the command
-        :param command: the command to parse
+        Creates a new FirstParse object.
         """
-        Parser.__init__(self, command)
+        Parser.__init__(self)
+        self.__line_number = 0  # initialize the line number to 0
 
     def get_label_name(self):
         """
@@ -25,11 +24,10 @@ class FirstParse (Parser):
         if command_type == LABEL_COMMAND_TYPE:
             return self.command[1:-1]  # ignores the () at the beginning and the end
         if command_type != EMPTY_COMMAND_TYPE:  # increments the line number if it is not a blank line or a label
-            FirstParse.__line_number += 1
+            self.__line_number += 1
 
-    @staticmethod
-    def get_line_number():
+    def get_line_number(self):
         """
         :return: the current line number
         """
-        return FirstParse.__line_number
+        return self.__line_number
