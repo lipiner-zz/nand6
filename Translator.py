@@ -17,9 +17,12 @@ ADDRESS_LENGTH = 15
 BINARY_ZERO = "0"
 BINARY_ONE = "1"
 A_OPCODE = "0"
-M_REGIATER = "M"
-A_REGIATER = "A"
-D_REGIATER = "D"
+C_OPCODE = "1"
+M_REGISTER = "M"
+A_REGISTER = "A"
+D_REGISTER = "D"
+SHIFT_LEFT = "<<"
+SHIFT_RIGHT = ">>"
 
 
 class Translator:
@@ -53,16 +56,50 @@ class Translator:
 
     @staticmethod
     def __translate_C(parser):
+        # getting the instruction parts
         jump = parser.get_jump
         dest = parser.get_dest
         comp = parser.get_comp
-        a = BINARY_ZERO
 
         # converting the instructions to binary codes
-        jump_binary = JUMP_TRANSLATOR[jump]
-        if M_REGIATER in comp:
+        jump_binary = Translator.__translate_jump(jump)
+        comp_binary = Translator.__translate_comp(comp)
+        dest_binary = Translator.__translate_dest(dest)
+        shift_bit = Translator.__translate_shift(comp)
+
+        return C_OPCODE + shift_bit + BINARY_ONE + comp_binary + dest_binary + jump_binary
+
+    @staticmethod
+    def __translate_jump(jump):
+        return JUMP_TRANSLATOR[jump]
+
+    @staticmethod
+    def __translate_comp(comp):
+        a = BINARY_ZERO
+        # for M comp instructions: setting a to 1 and replacing M with A for figuring the comp instruction
+        if M_REGISTER in comp:
             a = BINARY_ONE
-            #comp = comp.
+            comp = comp.replace(M_REGISTER, A_REGISTER)
 
         comp_binary = COMP_TRANSLATOR[comp]
 
+        return a + comp_binary
+
+    @staticmethod
+    def __translate_dest(dest):
+        d1 = d2 = d3 = BINARY_ZERO
+        if A_REGISTER in dest:
+            d1 = BINARY_ONE
+        if D_REGISTER in dest:
+            d2 = BINARY_ONE
+        if M_REGISTER in dest:
+            d3 = BINARY_ONE
+
+        return d1 + d2 + d3
+
+    @staticmethod
+    def __translate_shift(comp):
+        if SHIFT_LEFT in comp or SHIFT_RIGHT in comp:
+            return BINARY_ZERO
+
+        return BINARY_ONE
