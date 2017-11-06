@@ -38,11 +38,11 @@ class Translator:
             return EMPTY_TRANSLATION
 
     @staticmethod
-    def __translate_A(parser):
+    def __translate_A(parser, symbol_table):
         address = parser.get_address()
         # checks if the address is actually a variable or label and replaces it with its address from the SymbolTable
         if not address.isdigit():
-            address = SymbolTable.find(address)
+            address = symbol_table.find(address)
         # if the address contains only numbers- converting it to int
         else:
             address = int(address)

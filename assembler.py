@@ -22,16 +22,17 @@ def assemble_file(file_name):
         with open(output_file_name, WRITING_MODE) as output_file:
             # first parse of the file
             first_parser = FirstParse()
+            symbol_table = SymbolTable()
             for line in input_file:
                 first_parser.set_command(line)
-                SymbolTable.set_label(first_parser)
+                symbol_table.set_label(first_parser)
             # second parse of the file
             input_file.seek(0)
             second_parser = SecondParse()
             for line in input_file:
                 second_parser.set_command(line)
                 second_parser.parse()
-                binary_line = Translator.translate(second_parser)
+                binary_line = Translator.translate(second_parser, symbol_table)
                 if binary_line:
                     output_file.write(binary_line + LINE_BREAK)
 
