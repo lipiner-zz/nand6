@@ -41,7 +41,7 @@ class Translator:
     def __translate_A(parser):
         address = parser.get_address()
         # checks if the address is actually a variable or label and replaces it with its address from the SymbolTable
-        if address.isalpha():
+        if not address.isdigit():
             address = SymbolTable.find(address)
         # if the address contains only numbers- converting it to int
         else:
