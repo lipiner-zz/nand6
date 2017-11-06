@@ -29,3 +29,14 @@ if __name__ == '__main__':
 
     print(SymbolTable.find("LOOP"))
     print(SymbolTable.find("k"))
+
+
+    if not os.path.isdir(path):
+        print_usage()
+    else:
+        files_list = os.listdir(path)  # list of all the files' name in the subject directory
+        for my_file in files_list:
+            if C.VIDEO_FILE_EXTENSION in my_file:
+                video = os.path.join(path, my_file)
+            if C.LOG_FILE_NAME in my_file:
+                log = os.path.join(path, my_file)
