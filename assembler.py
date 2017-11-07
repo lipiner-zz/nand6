@@ -13,7 +13,6 @@ from translator import Translator
 # constants #
 #############
 PATH_POS = 1  # the arguments position for the file path
-ASM_SUFFIX_LENGTH = 3
 HACK_SUFFIX = "hack"
 ASM_SUFFIX = "asm"
 WRITING_MODE = "w"
@@ -64,9 +63,11 @@ def assemble_directory(directory_name):
 
 # main part
 if __name__ == '__main__':
-    path = sys.argv[PATH_POS]
+    if len(sys.argv) < PATH_POS + 1:
+        sys.exit()  # There is not an input
 
     # checks if the given path is a directory or a file
+    path = sys.argv[PATH_POS]
     if os.path.isdir(path):
         assemble_directory(path)  # assembles all asm file in the directory
     else:
