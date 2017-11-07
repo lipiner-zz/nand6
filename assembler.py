@@ -58,8 +58,8 @@ def assemble_directory(directory_name):
     """
     files_list = os.listdir(directory_name)  # list of all the files' name in the given directory
     for directory_file in files_list:
-        if ASM_SUFFIX in directory_file:
-            asm_file = os.path.join(directory_name, directory_file)
+        if ASM_SUFFIX == directory_file[-len(ASM_SUFFIX):]:  # if the file is an ASM file
+            asm_file = os.path.join(directory_name, directory_file)  # creates a full path of the file name
             assemble_file(asm_file)
 
 # main part
