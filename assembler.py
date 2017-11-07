@@ -56,7 +56,7 @@ def assemble_directory(directory_name):
     files in the directory with the assembled binary code
     :param directory_name: the name of the given directory
     """
-    files_list = os.listdir(directory_name)  # list of all the files' name in the subject directory
+    files_list = os.listdir(directory_name)  # list of all the files' name in the given directory
     for directory_file in files_list:
         if ASM_SUFFIX in directory_file:
             asm_file = os.path.join(directory_name, directory_file)
