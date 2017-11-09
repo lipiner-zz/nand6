@@ -1,2 +1,3 @@
-#!/bin/bash
-python3 assembler.py "$1"
+#!/bin/sh
+
+python3 assembler.py $*

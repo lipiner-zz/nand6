@@ -1,5 +1,11 @@
+###########
+# imports #
+###########
 import re
 
+#############
+# constants #
+#############
 C_COMMAND_TYPE = 'C'
 A_COMMAND_TYPE = 'A'
 EMPTY_COMMAND_TYPE = 'N'

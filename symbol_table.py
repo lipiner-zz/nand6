@@ -1,5 +1,11 @@
+###########
+# imports #
+###########
 from first_parse import FirstParse
 
+#############
+# constants #
+#############
 FIRST_REGISTER_ALLOCATED = 16
 
 

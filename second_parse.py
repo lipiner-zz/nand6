@@ -1,6 +1,12 @@
+###########
+# imports #
+###########
 from Parser import Parser
 from Parser import C_COMMAND_TYPE, A_COMMAND_TYPE, EMPTY_COMMAND_TYPE, LABEL_COMMAND_TYPE
 
+#############
+# constants #
+#############
 D_INST_FIRST_DELIMITERS = "="
 D_INST_SECOND_DELIMITERS = ";"
 
@@ -35,7 +41,6 @@ class SecondParse (Parser):
             if len(second_part) < 2:  # if jump doesn't exist
                 second_part.append("")
             self.__comp, self.__jump = second_part
-
 
     def get_address(self):
         """
