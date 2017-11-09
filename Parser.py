@@ -14,7 +14,7 @@ A_COMMAND_SYMBOL = '@'
 EMPTY_COMMAND_SYMBOL = ''
 LABEL_COMMAND_SYMBOL = '('
 COMMENT_SYMBOL = '//'
-WHITE_SPACES_CHARS_LIST = [" ", "\t"]
+COMMAND_SEPARATOR = "\s"
 
 
 class Parser:
@@ -45,9 +45,7 @@ class Parser:
         comment_pos = self.command.find(COMMENT_SYMBOL)  # search for a comments chars "//"
         if comment_pos >= 0:
             self.command = self.command[:comment_pos]  # removes any comment if there is any
-        self.command = re.sub("\s", "", self.command)  # removes any white spaces
-        # for note in WHITE_SPACES_CHARS_LIST:
-        #     self.command = self.command.replace(note, "")  # removes any white spaces
+        self.command = re.sub(COMMAND_SEPARATOR, "", self.command)  # removes any white spaces
 
     def __set_type(self):
         """
