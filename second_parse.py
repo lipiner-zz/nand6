@@ -31,6 +31,10 @@ class SecondParse (Parser):
         """
         if self.get_type() == A_COMMAND_TYPE:
             self.__address = self.command[1:]  # cuts the A-instruction note
+            # sets the rest of the parts to None
+            self.__dest = None
+            self.__comp = None
+            self.__jump = None
         elif self.get_type() == C_COMMAND_TYPE:
             command_parts = self.command.split(D_INST_FIRST_DELIMITERS)  # split the dest and the comp
             if len(command_parts) < 2:  # if dest doesn't exist
@@ -41,6 +45,7 @@ class SecondParse (Parser):
             if len(second_part) < 2:  # if jump doesn't exist
                 second_part.append("")
             self.__comp, self.__jump = second_part
+            self.__address = None  # sets the rest of the parts to None
 
     def get_address(self):
         """
